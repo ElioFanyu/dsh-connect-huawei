@@ -1,0 +1,6 @@
+# Register the two Huawei provider routes (码道 CodeArts / 果办 OfficeAce)
+# without changing the profile's default model. Both routes are driven through
+# this plugin's loopback shim; no separate CLI is required.
+- insert:
+    - id: dsh-connect-huawei
+      name: dsh-connect-huawei

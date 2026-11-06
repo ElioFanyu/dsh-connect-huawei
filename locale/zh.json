@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "dsh-connect-huawei",
+    "description": "把华为「码道 CodeArts」与「果办 OfficeAce」接入 DSH：两条 provider 路由、账号池与自动换号、按账号读取积分余量、逐模型勾选与图片输入能力、码道并发会话闸门，以及输入框里的胶囊积分读数。"
+  }
+}

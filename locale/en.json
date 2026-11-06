@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "dsh-connect-huawei",
+    "description": "Connects Huawei's CodeArts (码道) and OfficeAce (果办) to DSH: two provider routes, an account pool with automatic failover, per-account credit balances, per-model selection with image-input capability, a concurrency gate for CodeArts sessions, and a compact credit pill in the composer."
+  }
+}
