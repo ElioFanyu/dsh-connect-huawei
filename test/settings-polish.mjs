@@ -156,7 +156,10 @@ check(
   '无数据时仍默认选中第一个平台（否则四栏都空）',
   /platforms\[0\]\.platform : PLATFORM_ORDER\[0\]/.test(source),
 )
-check('客户端持有静态平台顺序', /const PLATFORM_ORDER = \['officeace', 'codearts'\]/.test(source))
+check(
+  '客户端持有静态平台顺序（码道在前）',
+  /const PLATFORM_ORDER = \['codearts', 'officeace'\]/.test(source),
+)
 check(
   '顶栏格子支持 pending 态',
   /pending: row\.pending === true/.test(source) && /dsm-hwc-tab-cell-pending/.test(CARD_CSS),
