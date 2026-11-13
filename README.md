@@ -33,7 +33,7 @@ dsh plugin --profile <profile> add file:/绝对路径/dsh-connect-huawei
 
 ## 前置要求
 
-- DeepSeek Harness `>=0.1.7-rc.1 <0.3.0-0`（已在 `0.2.1-rc.5` 上实测）
+- DeepSeek Harness `>=0.2.0-0 <0.3.0-0`（已在 `0.2.2-rc.2` 上实测）
 - Node.js `^22.19.0 || >=24.0.0`
 - 果办需要 Windows（读取 Windows 凭据管理器）；码道跨平台可用
 - 码道：用码道桌面端登录过一次；果办：桌面端需在 Windows 上运行并登录

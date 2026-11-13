@@ -2,6 +2,41 @@
 
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## 1.2.0 — 2026-11-13
+
+### 适配 DSH `0.2.2-rc.2`
+
+- **修复图片输入（升级后必现的回归）**。`@deepseek-ai/dsh-llm-pi-ai` 在 0.2.x
+  改了带图请求的前置条件：适配器转换消息时会调 `config.resolveAttachments()`，
+  **拿不到就抛** `UNSUPPORTED_CONTENT`
+  （`pi-ai image input requires the durable attachment service`）。
+
+  它不是"把图丢掉继续发"，而是整条请求直接失败。所以这个缺陷只在**用户真发图**
+  时暴露：文本对话全部正常，图片全部报错。1.1.0 及更早版本没有传这两个回调，
+  在 0.2.2 上图片功能整体不可用。
+
+  修复：
+  - 新增 `resolveAttachments: () => attachments?.current?.()`，把宿主的
+    `attachments` 服务交给适配器；
+  - 新增 `resolveImageAccess`，走宿主的 `resolveImageAttachmentAccess`
+    （从 `@deepseek-ai/dsh-llm` 取），把依附件的宿主路径映射成进程可读路径。
+    自己拼路径会漏掉未映射的附件，所以必须用宿主这个函数。
+  - 两者都用**惰性取值**（`ctx.get(...)`）而不是构造期快照：宿主服务由 fiber
+    装配顺序决定，可能比适配器就绪更晚，构造期取值会永久拿到 `undefined`。
+  - `@deepseek-ai/dsh-llm` 改为命名空间导入。用命名导入取一个旧版本不存在的
+    符号会在 ESM 链接阶段直接失败，整个 provider 都起不来；命名空间导入 +
+    可选调用则退化成"图片不可用、文本仍可用"。
+
+- **`engines.dsh` 抬到 `>=0.2.0-0`**。1.1.0 声明 `>=0.1.7-rc.1`，但
+  `settings.section` 是 0.2.x 才有的槽位，0.1.x 上装这个版本只能得到一张
+  不显示的卡片。声明一个装不上的下限比声明得保守更诚实。
+
+### 新增
+
+- `test/image-input-contract.mjs`：直接读安装目录里 `dsh-llm-pi-ai` 的源码，
+  断言"图片必须有耐用附件服务"这个契约仍然成立，再断言我们确实交出了两个回调、
+  且都是惰性读取。已用变异测试验证——删掉两个回调后 4 项失败。
+
 ## 1.1.0 — 2026-11-06
 
 ### 适配 DSH 0.2.x（实测 `0.2.1-rc.5`）

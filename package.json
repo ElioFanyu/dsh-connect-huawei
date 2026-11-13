@@ -2,7 +2,7 @@
   "name": "dsh-connect-huawei",
   "displayName": "DSH Connect Huawei",
   "description": "把华为「码道 CodeArts」与「果办 OfficeAce」接入 DeepSeek Harness：两条 provider 路由、账号池与自动换号、按账号读取积分余量、逐模型勾选与图片输入能力、码道并发会话闸门，以及输入框里的胶囊积分读数。页面沿用 dsh-connect-workbuddy 的卡片样式。",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "ElioFanyu",
   "license": "MIT",
   "keywords": [
@@ -16,7 +16,7 @@
   ],
   "type": "module",
   "engines": {
-    "dsh": ">=0.1.7-rc.1 <0.3.0-0",
+    "dsh": ">=0.2.0-0 <0.3.0-0",
     "node": "^22.19.0 || >=24.0.0"
   },
   "main": "lib/index.mjs",
