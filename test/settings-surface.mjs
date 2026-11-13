@@ -96,6 +96,9 @@ const factory = new Function(
   'setInterval',
   'clearInterval',
   'ROUTE',
+  'PLATFORM_ORDER',
+  'PLATFORM_LABELS',
+  'PanelSkeleton',
   'CARD_ICON',
   'BusyOverlay',
   'AccountRow',
@@ -111,7 +114,7 @@ const Stub = () => null
 const HuaweiCard = factory(
   h, t, useState, useRef, useCallback, useEffect, useMemo,
   async () => ({ ok: false, status: 599, json: async () => ({}) }),
-  () => 0, () => {}, '/x', 'data:,', Stub, Stub, Stub, Stub, Stub, {},
+  () => 0, () => {}, '/x', ['officeace', 'codearts'], { officeace: '果办 OfficeAce', codearts: '码道 CodeArts' }, Stub, Stub, Stub, Stub, Stub, Stub, {},
 )
 
 function render(surface) {
